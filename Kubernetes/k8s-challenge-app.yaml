@@ -14,17 +14,18 @@ spec:
     spec:
       containers:
       - name: k8s-challenge-app
-        image: my-php-app:latest
+        image: alilikpo/k8s-challenge-app:v1
         ports:
         - containerPort: 80
         env:
-        - name: DB_CONNECTION_STRING
-          valueFrom:
-            configMapKeyRef:
-              name: db-connection-string
-              key: connection-string
+        - name: DB_HOST
+          value: mariadb-service  
+        - name: DB_USER
+          value: root  
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mariadb-root-password
               key: password
+        - name: DB_NAME
+          value: ecomdb  
