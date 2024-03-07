@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-challenge-app-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: k8s-challenge-app

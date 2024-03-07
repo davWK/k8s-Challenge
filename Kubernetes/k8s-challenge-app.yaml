@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-challenge-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-challenge-app
+  template:
+    metadata:
+      labels:
+        app: k8s-challenge-app
+    spec:
+      containers:
+      - name: k8s-challenge-app
+        image: my-php-app:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_CONNECTION_STRING
+          valueFrom:
+            configMapKeyRef:
+              name: db-connection-string
+              key: connection-string
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-password
+              key: password
