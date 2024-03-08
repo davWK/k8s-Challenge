@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: k8s-challenge-app
-        image: alilikpo/k8s-challenge-app:v1
+        image: alilikpo/k8s-challenge-app:v2
         ports:
         - containerPort: 80
         env:
@@ -28,4 +28,9 @@ spec:
               name: mariadb-root-password
               key: password
         - name: DB_NAME
-          value: ecomdb  
+          value: ecomdb
+        - name: FEATURE_DARK_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: feature-toggle-config
+              key: FEATURE_DARK_MODE            

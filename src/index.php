@@ -20,8 +20,14 @@
         <link rel="stylesheet" href="vendors/owl_carousel/owl.carousel.css">
 
         <!-- Theme style CSS -->
-        <link href="css/style.css" rel="stylesheet">
-<!--        <link href="css/responsive.css" rel="stylesheet">  -->
+        <?php
+        if (getenv('FEATURE_DARK_MODE') === 'true') {
+            echo '<link href="css/dark-mode.css" rel="stylesheet">';
+        } else {
+            echo '<link href="css/style.css" rel="stylesheet">';
+        }
+        ?>
+        <!--        <link href="css/responsive.css" rel="stylesheet">  -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
