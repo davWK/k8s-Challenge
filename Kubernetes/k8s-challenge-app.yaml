@@ -14,9 +14,13 @@ spec:
     spec:
       containers:
       - name: k8s-challenge-app
-        image: alilikpo/k8s-challenge-app:v3
+        image: alilikpo/k8s-challenge-app:v2
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"        
         env:
         - name: DB_HOST
           value: mariadb-service  
