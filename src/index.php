@@ -36,6 +36,15 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+    <section class="promo_banner_area">
+        <div class="container">
+            <div class="promo_banner">
+                <h2>Our Special Promotion is On Now!</h2>
+                <p>Get up to 50% off on selected items. Hurry up, offer ends soon!</p>
+                <a href="www.example.com" class="learn_more">Learn More</a>
+            </div>
+        </div>
+    </section>
     <body>
         <!--==========Main Header==========-->
         <header class="main_header_area">
