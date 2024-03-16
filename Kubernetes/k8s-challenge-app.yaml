@@ -16,10 +16,22 @@ spec:
       - name: k8s-challenge-app
         image: alilikpo/k8s-challenge-app:v3
         ports:
-        - containerPort: 80       
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /live.php
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /status.php
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
         env:
         - name: DB_HOST
-          value: mariadb-service  
+          value: mariadb-service   
         - name: DB_USER
           value: root  
         - name: DB_PASSWORD
