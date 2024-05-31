@@ -1,0 +1,27 @@
+replicaCount: 3
+
+image:
+  repository: alilikpo/k8s-challenge-app
+  tag: v4
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  loadBalancerIP: "THE IP ADDRESS HERE"
+  port: 80
+
+db:
+  host: mariadb-service
+  user: root
+  name: ecomdb
+  rootPassword: "dGhlTmV3UEBzc3dvcmQ="
+  connectionString: "mysql:host=mariadb-service;dbname=ecomdb"
+  
+featureToggle:
+  darkMode: "false"
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
