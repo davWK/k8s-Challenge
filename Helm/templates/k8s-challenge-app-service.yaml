@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-app-service
 spec:
   type: {{ .Values.service.type }}
-  loadBalancerIP: {{ .Values.service.loadBalancerIP | quote }}
+  #loadBalancerIP: {{ .Values.service.loadBalancerIP | quote }} for static/reserved IP
   ports:
   - port: {{ .Values.service.port }}
   selector:
