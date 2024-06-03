@@ -16,6 +16,9 @@ db:
   name: ecomdb
   rootPassword: "dGhlTmV3UEBzc3dvcmQ="
   connectionString: "mysql:host=mariadb-service;dbname=ecomdb"
+  persistentVolume:
+    size: "10Gi"  
+    storageClass: "standard" 
   
 featureToggle:
   darkMode: "false"

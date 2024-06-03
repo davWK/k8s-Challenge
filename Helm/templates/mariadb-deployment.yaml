@@ -23,10 +23,15 @@ spec:
               key: password
         - name: MYSQL_DATABASE
           value: {{ .Values.db.name }}
-        volumeMounts:
+       volumeMounts:
         - name: config-volume
           mountPath: /docker-entrypoint-initdb.d
+        - name: mariadb-storage
+          mountPath: /var/lib/mysql
       volumes:
       - name: config-volume
         configMap:
           name: db-init-script
+      - name: mariadb-storage
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
