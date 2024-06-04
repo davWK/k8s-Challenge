@@ -49,18 +49,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Install Google Cloud SDK
-      run: |
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-        sudo apt-get install apt-transport-https ca-certificates -y
-        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-        sudo apt-get update && sudo apt-get install google-cloud-sdk -y
-
-    - name: List Google Cloud Projects
-      run: |
-        gcloud auth list
-        gcloud projects list
-
     - name: Set up GKE credentials
       uses: google-github-actions/get-gke-credentials@v2
       with:
@@ -68,11 +56,11 @@ jobs:
           location: ${{ env.GKE_REGION }}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v5
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/$IMAGE:${{ github.sha }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE }}:${{ github.sha }}
 
     - name: Deploy to GKE
       run: |
