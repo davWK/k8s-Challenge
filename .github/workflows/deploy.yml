@@ -30,6 +30,7 @@ jobs:
       with:
           project_id: '${{ secrets.GKE_PROJECT }}'
           workload_identity_provider: 'projects/${{ secrets.GKE_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/k8s-challenge/providers/github'    
+          #service_account: 'k8s-challenge@${{ secrets.GKE_PROJECT }}.iam.gserviceaccount.com'
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
