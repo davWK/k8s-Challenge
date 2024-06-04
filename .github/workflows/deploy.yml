@@ -9,7 +9,7 @@ env:
     PROJECT_ID: ${{ secrets.GKE_PROJECT }}
     GKE_CLUSTER: autopilot-cluster-1 
     DEPLOYMENT_NAME: 
-    GKE_REGION: us-central1
+    #GKE_REGION: us-central1
     REPOSITORY: alilikpo
     IMAGE: k8s-challenge-app
 
@@ -53,7 +53,7 @@ jobs:
       uses: google-github-actions/get-gke-credentials@v2
       with:
           cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_REGION }}
+          #location: ${{ env.GKE_REGION }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
