@@ -64,6 +64,7 @@ jobs:
 
     - name: Deploy to GKE
       run: |
-        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE }}:${{ github.sha }}
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        kubectl get deployment
+      #   kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE }}:${{ github.sha }}
+      # env:
+      #   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
