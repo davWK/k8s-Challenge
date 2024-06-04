@@ -14,7 +14,7 @@ env:
     IMAGE: k8s-challenge-app
 
 jobs:
-  build:
+  Setup, build, Deploy:
     runs-on: ubuntu-latest
 
     permissions:
