@@ -14,7 +14,8 @@ env:
     IMAGE: k8s-challenge-app
 
 jobs:
-  build:
+  buildsetup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
 
     permissions:
