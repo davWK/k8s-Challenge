@@ -8,7 +8,7 @@ on:
 env:
     PROJECT_ID: ${{ secrets.GKE_PROJECT }}
     GKE_CLUSTER: autopilot-cluster-1 
-    DEPLOYMENT_NAME: your-deployment-name
+    DEPLOYMENT_NAME: helmed-app-deployment
     GKE_REGION: us-central1
     REPOSITORY: alilikpo
     IMAGE: k8s-challenge-app
@@ -64,4 +64,4 @@ jobs:
 
     - name: Deploy to GKE
       run: |
-        kubectl set image deployment/$DEPLOYMENT_NAME ${{ secrets.DOCKER_USERNAME }}/$IMAGE:${{ github.sha }}
+        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE }}:${{ github.sha }}
