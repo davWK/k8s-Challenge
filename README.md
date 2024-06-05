@@ -68,7 +68,7 @@ Each file in the `Kubernetes/` directory corresponds to a specific Kubernetes re
 
 These manifests are written in YAML and follow the Kubernetes API schema. They can be applied to a Kubernetes cluster using the `kubectl apply` command.
 
-While using Kubernetes manifests directly provides more control and visibility into each resource, it lacks some of the conveniences of Helm such as parameterization, release management, and rollbacks. Therefore, it's recommended for users who are more comfortable with Kubernetes and prefer to manage resources manually.
+While using Kubernetes manifests directly provides more control and visibility into each resource, it lacks some of the conveniences of Helm such as parameterization and release management. Therefore, it's recommended for users who are more comfortable with Kubernetes and prefer to manage resources manually.
 
 ---
 
@@ -110,7 +110,7 @@ The GitHub Actions workflow automates the build, publish, and deployment process
     ```
 4. Install or upgrade the Helm release:
     ```sh
-    helm upgrade --install k8s-challenge-app . --namespace <namespace> --create-namespace
+    helm upgrade --install <release-name> . --namespace <namespace> --create-namespace
     ```
 5. Application and Database Deployment:
     - The Helm chart deploys both the application and the MariaDB database with appropriate configuration, ensuring seamless integration and scalability.
