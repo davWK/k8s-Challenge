@@ -101,87 +101,87 @@ The GitHub Actions workflow automates the build, publish, and deployment process
 
 1. Ensure Helm is installed on your local machine.
 2. Navigate to the Helm chart directory:
-        ```sh
-        cd /Helm/
-        ```
+    ```sh
+    cd Helm/
+    ```
 3. Package the Helm chart:
-        ```sh
-        helm package .
-        ```
-4. **Install or upgrade the Helm release**:
-         ```sh
-         helm upgrade --install k8s-challenge-app . --namespace <namespace> --create-namespace
-         ```
-5. **Application and Database Deployment**:
-        - The Helm chart deploys both the application and the MariaDB database with appropriate configuration, ensuring seamless integration and scalability.
+    ```sh
+    helm package .
+    ```
+4. Install or upgrade the Helm release:
+    ```sh
+    helm upgrade --install k8s-challenge-app . --namespace <namespace> --create-namespace
+    ```
+5. Application and Database Deployment:
+    - The Helm chart deploys both the application and the MariaDB database with appropriate configuration, ensuring seamless integration and scalability.
 
 ### Kubernetes Manifests (for non Helm deployment)
 
 If you prefer not to use Helm for deployment, you can use the Kubernetes manifests directly. These are located in the `Kubernetes/` directory. Here are the steps to deploy using kubectl:
 
-1. **Set up the Kubernetes environment**:
-        - Ensure `kubectl` is installed and configured to interact with your Kubernetes cluster.
+1. Set up the Kubernetes environment:
+    - Ensure `kubectl` is installed and configured to interact with your Kubernetes cluster.
 
-2. **Navigate to the Kubernetes directory**:
-                ```sh
-                cd /Kubernetes/
-                ```
+2. Navigate to the Kubernetes directory:
+    ```sh
+    cd Kubernetes/
+    ```
 
-3. **Apply the Kubernetes manifests**:
-                - Apply the ConfigMaps:
-                        ```sh
-                        kubectl apply -f db-connection-string.yaml
-                        kubectl apply -f db-init-script.yaml
-                        kubectl apply -f feature-toggle-config.yaml
-                        ```
-                - Apply the Deployments and Services:
-                        ```sh
-                        kubectl apply -f k8s-challenge-app.yaml
-                        kubectl apply -f k8s-challenge-app-service.yaml
-                        kubectl apply -f mariadb-deployment.yaml
-                        kubectl apply -f mariadb-service.yaml
-                        ```
-                - Apply the Secret:
-                        ```sh
-                        kubectl apply -f mariadb-root-password.yaml
-                        ```
-                - Apply the PersistentVolumeClaim:
-                        ```sh
-                        kubectl apply -f mariadb-pvc.yaml
-                        ```
-                - Apply the Horizontal Pod Autoscaler:
-                        ```sh
-                        kubectl apply -f hpa.yaml
-                        ```
+3. Apply the Kubernetes manifests:
+    - Apply the ConfigMaps:
+        ```sh
+        kubectl apply -f db-connection-string.yaml
+        kubectl apply -f db-init-script.yaml
+        kubectl apply -f feature-toggle-config.yaml
+        ```
+    - Apply the Deployments and Services:
+        ```sh
+        kubectl apply -f k8s-challenge-app.yaml
+        kubectl apply -f k8s-challenge-app-service.yaml
+        kubectl apply -f mariadb-deployment.yaml
+        kubectl apply -f mariadb-service.yaml
+        ```
+    - Apply the Secret:
+        ```sh
+        kubectl apply -f mariadb-root-password.yaml
+        ```
+    - Apply the PersistentVolumeClaim:
+        ```sh
+        kubectl apply -f mariadb-pvc.yaml
+        ```
+    - Apply the Horizontal Pod Autoscaler:
+        ```sh
+        kubectl apply -f hpa.yaml
+        ```
 
-4. **Verify the deployment**:
-                - Use `kubectl` commands to verify the status of the pods, services, and other resources:
-                        ```
-                        kubectl get pods
-                        kubectl get services
-                        ```
+4. Verify the deployment:
+    - Use `kubectl` commands to verify the status of the pods, services, and other resources:
+        ```sh
+        kubectl get pods
+        kubectl get services
+        ```
 
 Remember to replace any placeholders in the Kubernetes manifests with your actual values before applying them.
 
 ### GitHub Actions CI/CD Pipeline
 
-#### Ensure your GitHub repository is configured with the necessary secrets:
-                - `GKE_PROJECT`
-                - `GKE_PROJECT_NUMBER`
-                - `DOCKER_USERNAME`
-                - `DOCKER_PASSWORD`
- The provided workflow file will handle the build, push, and deploy processes automatically upon pushing to the `main` branch.
+Ensure your GitHub repository is configured with the necessary secrets:
+- `GKE_PROJECT`
+- `GKE_PROJECT_NUMBER`
+- `DOCKER_USERNAME`
+- `DOCKER_PASSWORD`
 
+The provided workflow file will handle the build, push, and deploy processes automatically upon pushing to the `main` branch.
 
 ### Testing and Verification
 
-        - After deployment, verify the application functionality and health probes using `kubectl` commands:
-            ```sh
-            kubectl get pods -n <namespace>
-            kubectl get services -n <namespace>
-            kubectl logs <pod-name> -n <namespace>
-            ```
-        - Ensure the Horizontal Pod Autoscaler (HPA) is correctly scaling the application based on CPU utilization.
+- After deployment, verify the application functionality and health probes using `kubectl` commands:
+    ```sh
+    kubectl get pods -n <namespace>
+    kubectl get services -n <namespace>
+    kubectl logs <pod-name> -n <namespace>
+    ```
+- Ensure the Horizontal Pod Autoscaler (HPA) is correctly scaling the application based on CPU utilization.
 
 ---
 
