@@ -85,7 +85,7 @@ The GitHub Actions workflow automates the build, publish, and deployment process
 ### CI/CD Pipeline Overview
 
 - **Checkout Code**: Checks out the code from the repository.
-- **Authenticate with Google Cloud**: Authenticates to Google Cloud using workload identity federation.
+- **Authenticate with Google Cloud**: Authenticates to Google Cloud using [workload identity federation](https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines).
 - **Set up Docker Buildx**: Sets up Docker Buildx for multi-platform builds.
 - **Cache Docker Layers**: Caches Docker layers to speed up subsequent builds.
 - **Log in to Docker Hub**: Authenticates to Docker Hub to push images.
