@@ -7,11 +7,11 @@ on:
 
 env:
     PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-    GKE_CLUSTER: autopilot-cluster-1 
-    DEPLOYMENT_NAME: helmed-app-deployment
-    CONTAINER_NAME: helmed-app
-    GKE_REGION: us-central1
-    IMAGE: k8s-challenge-app
+    GKE_CLUSTER: <cluster-name> 
+    DEPLOYMENT_NAME: <deployment-name>
+    CONTAINER_NAME: <container-name>
+    GKE_REGION: <gke-region>
+    IMAGE: <container-image-name>
 
 jobs:
   buildsetup-build-publish-deploy:
